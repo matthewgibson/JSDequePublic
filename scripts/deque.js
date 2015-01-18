@@ -51,6 +51,7 @@ Deque.prototype = {
 		var newNode = new Node(x, this.beginMarker, this.beginMarker.next);
 		this.beginMarker.next.prev = newNode;
 		this.beginMarker.next = newNode;
+		this.size = this.size + 1;
 	},
 
 	// pop() removes the front item from the deque and returns it
