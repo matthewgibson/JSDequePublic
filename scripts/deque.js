@@ -58,22 +58,49 @@ Deque.prototype = {
 	// returns null if there is no element to return
 	pop : function () {
 		// your code goes here
+		
+		if (this.size != 0) {
+			var temp = this.beginMarker.next.data;
+			this.beginMarker.next.next.prev = this.beginMarker;
+			this.beginMarker.next = this.beginMarker.next.next;
+			this.size = this.size - 1;
+			return temp;
+		}
+		return null;
+
 	},
 
 	// inject(x) inserts item x at the rear end of the deque
 	inject : function (x) {
 		// your code goes here
+		var newNode = new Node(x, this.endMarker.prev, this.endMarker);
+		this.endMarker.prev.next = newNode;
+		this.endMarker.prev = newNode;
+		this.size = this.size + 1;
+
 	},
 
 	// eject() removes the rear item from the deque and returns it
 	// returns null if there is no element to return
 	eject : function () {
 		// your code goes here
+		if (this.size != 0) {
+			var temp = this.endMarker.prev.data;
+			this.endMarker.prev.prev.next = this.endMarker;
+			this.endMarker.prev = this.endMarker.prev.prev;
+			this.size = this.size - 1;
+			return temp;
+		}
+		return null;
+
 	},
 
 	// clear() removes all elements from the deque
 	clear : function() {
 		// your code goes here
+		while (this.size > 0) {
+			this.pop();
+		}
 	}
 
 };
